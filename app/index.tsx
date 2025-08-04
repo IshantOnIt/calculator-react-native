@@ -38,7 +38,14 @@ export default function Index() {
   return (
     <View style={styles.container}>
       <View style={styles.displayContainer}>
-        <Text style={styles.expressionText}>{expression}</Text>
+        <Text
+          style={[styles.expressionText, !result && styles.boldText]}
+          adjustsFontSizeToFit
+          numberOfLines={1}
+          minimumFontScale={0.5}
+        >
+          {expression}
+        </Text>
         {result && (
           <Text
             style={styles.resultText}
@@ -106,6 +113,10 @@ const styles = StyleSheet.create({
     marginTop: 5,
     textAlign: "right",
     maxWidth: "100%",
+  },
+  boldText: {
+    fontSize: 72,
+    color: "#333",
   },
   buttonsContainer: {
     padding: 10,
