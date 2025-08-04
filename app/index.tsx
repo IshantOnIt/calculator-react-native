@@ -98,6 +98,9 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#fff",
     justifyContent: "flex-end",
+    width: "100%",
+    maxWidth: 600,
+    marginHorizontal: "auto",
   },
   displayContainer: {
     padding: 20,
