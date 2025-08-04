@@ -11,7 +11,12 @@ export default function Index() {
       case "=":
         try {
           const exp = expression.replace(/x/g, "*").replace(/÷/g, "/");
-          setResult(`= ${eval(exp)}`);
+          const evalResult = eval(exp);
+          const formattedResult =
+            typeof evalResult === "number" && !Number.isInteger(evalResult)
+              ? parseFloat(evalResult.toFixed(6)) // limit to 6 decimals
+              : evalResult.toString();
+          setResult(`= ${formattedResult}`);
         } catch (e) {
           setResult("Error");
         }
@@ -34,7 +39,16 @@ export default function Index() {
     <View style={styles.container}>
       <View style={styles.displayContainer}>
         <Text style={styles.expressionText}>{expression}</Text>
-        {result && <Text style={styles.resultText}>{result}</Text>}
+        {result && (
+          <Text
+            style={styles.resultText}
+            adjustsFontSizeToFit
+            numberOfLines={1}
+            minimumFontScale={0.5}
+          >
+            {result}
+          </Text>
+        )}
       </View>
       <View style={styles.buttonsContainer}>
         <View style={styles.buttonsRow}>
@@ -90,6 +104,8 @@ const styles = StyleSheet.create({
     fontSize: 72,
     color: "#333",
     marginTop: 5,
+    textAlign: "right",
+    maxWidth: "100%",
   },
   buttonsContainer: {
     padding: 10,
