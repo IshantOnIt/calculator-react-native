@@ -10,7 +10,8 @@ export default function Index() {
     switch (input) {
       case "=":
         try {
-          setResult(`= ${eval(expression)}`);
+          const exp = expression.replace(/x/g, "*").replace(/÷/g, "/");
+          setResult(`= ${eval(exp)}`);
         } catch (e) {
           setResult("Error");
         }
