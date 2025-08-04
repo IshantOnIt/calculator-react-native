@@ -2,20 +2,19 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
-  type StyleProp,
-  type ViewStyle,
+  type TouchableOpacityProps,
 } from "react-native";
 
-type Props = {
+type Props = TouchableOpacityProps & {
   value: string;
-  style?: StyleProp<ViewStyle>;
+  onClick: (value: string) => void;
 };
 
-export default function Button({ value, style = {} }: Props) {
+export default function Button({ value, onClick, style = {} }: Props) {
   return (
     <TouchableOpacity
       style={[styles.button, style]}
-      onPress={() => console.log("Button pressed")}
+      onPress={() => onClick(value)}
     >
       <Text style={styles.buttonText}>{value}</Text>
     </TouchableOpacity>
