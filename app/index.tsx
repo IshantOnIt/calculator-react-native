@@ -30,7 +30,7 @@ export default function Index() {
         setResult("");
         break;
       default:
-        setExpression(expression + input);
+        setExpression(expression + input.replace(/%/g, "/100")); // replace % with /100 to avoid confusion with % operator
         setResult("");
     }
   }
